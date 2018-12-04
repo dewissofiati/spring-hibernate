@@ -25,12 +25,11 @@ public class MainApp {
 
 	public static void main(String[] args) {
 
-//		SpringApplication.run(MainApp.class, args);
-
 		ConfigurableApplicationContext applicationContext = SpringApplication.run(MainApp.class,args);
 
-		ProdukTabunganDao bean = applicationContext.getBean(ProdukTabunganDao.class);
-		bean.save(new ProdukTabungan(
+		ProdukTabunganDao produkTabunganDao = applicationContext.getBean(ProdukTabunganDao.class);
+		ProdukTabungan p001 = produkTabunganDao.save(
+			new ProdukTabungan(
 			"001",
 			"TabunganKu",
 			3.5,
@@ -38,7 +37,8 @@ public class MainApp {
 			new BigDecimal(100000)
 		));
 
-		bean.save(new ProdukTabungan(
+		ProdukTabungan p002 = produkTabunganDao.save(
+			new ProdukTabungan(
 			"002",
 			"Tabungan Mapan",
 			4.0,
@@ -46,64 +46,67 @@ public class MainApp {
 			new BigDecimal(500000)
 			));
 
-		bean.save(new ProdukTabungan(
-				"003",
-				"Tabungan Umroh",
-				2.5,
-				new BigDecimal(100),
-				new BigDecimal(100000)
+		ProdukTabungan p003 = produkTabunganDao.save(
+			new ProdukTabungan(
+			"003",
+			"Tabungan Umroh",
+			2.5,
+			new BigDecimal(100),
+			new BigDecimal(100000)
 		));
 
-		NasabahDao beanNas = applicationContext.getBean(NasabahDao.class);
-		beanNas.save(new Nasabah(
-				"001",
-				"Sulaeman Hasim",
-				"Jl. Bojongsoang no 110",
-				"Bandung",
-				"Ciparay",
-				"081123123543"
-		));
-
-		BukuTabunganDao beanBuk = applicationContext.getBean(BukuTabunganDao.class);
+		BukuTabunganDao bukuTabunganDao = applicationContext.getBean(BukuTabunganDao.class);
 		List<BukuTabungan> listTransaksi = new ArrayList<>();
 
-		BukuTabungan trans1 = new BukuTabungan(
+		BukuTabungan transaksi1 = new BukuTabungan(1,
 				"001",
 				LocalDate.of(2017,8,1),
 				new BigDecimal(250000),
 				BigDecimal.ZERO,
 				new BigDecimal(250000)
-		); trans1 = beanBuk.save(trans1);
+		); transaksi1 = bukuTabunganDao.save(transaksi1);
 
-		BukuTabungan trans2 = new BukuTabungan(
+		BukuTabungan transaksi2 = new BukuTabungan(2,
 				"001",
 				LocalDate.of(2017,8,20),
 				new BigDecimal(250000),
 				BigDecimal.ZERO,
 				new BigDecimal(500000)
-		); trans2 = beanBuk.save(trans2);
+		); transaksi2 = bukuTabunganDao.save(transaksi2);
 
-		BukuTabungan trans3 = new BukuTabungan(
+		BukuTabungan transaksi3 = new BukuTabungan(3,
 				"001",
 				LocalDate.of(2017,8,21),
 				new BigDecimal(50000),
 				BigDecimal.ZERO,
 				new BigDecimal(550000)
-		); trans3 = beanBuk.save(trans3);
+		); transaksi3 = bukuTabunganDao.save(transaksi3);
 
 
-		BukuTabungan trans4 = new BukuTabungan(
+		BukuTabungan transaksi4 = new BukuTabungan(4,
 				"002",
 				LocalDate.of(2017,8,21),
 				BigDecimal.ZERO,
 				new BigDecimal(250000),
 				new BigDecimal(250000)
-		); trans4 = beanBuk.save(trans4);
+		); transaksi4 = bukuTabunganDao.save(transaksi4);
 
 
-		listTransaksi.add(trans1);
-		listTransaksi.add(trans2);
-		listTransaksi.add(trans3);
-		listTransaksi.add(trans4);
+		listTransaksi.add(transaksi1);
+		listTransaksi.add(transaksi2);
+		listTransaksi.add(transaksi3);
+		listTransaksi.add(transaksi4);
+		
+		NasabahDao nasabahDao = applicationContext.getBean(NasabahDao.class);
+		nasabahDao.save(new Nasabah(
+				"001",
+				"Sulaeman Hasim",
+				"Jl. Bojongsoang no 110",
+				"Bandung",
+				"Ciparay",
+				"081123123543",
+			p001,
+			listTransaksi
+		));
 	}
 }
