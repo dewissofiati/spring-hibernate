@@ -1,0 +1,10 @@
+com/tabeldata/springhibernatequis/repository/BukuTabunganRepository.class
+com/tabeldata/springhibernatequis/entity/BukuTabungan.class
+com/tabeldata/springhibernatequis/repository/BukuTabunganDao.class
+com/tabeldata/springhibernatequis/entity/Nasabah.class
+com/tabeldata/springhibernatequis/repository/NasabahDao.class
+com/tabeldata/springhibernatequis/repository/ProdukTabunganRepository.class
+com/tabeldata/springhibernatequis/repository/NasabahRepository.class
+com/tabeldata/springhibernatequis/MainApp.class
+com/tabeldata/springhibernatequis/entity/ProdukTabungan.class
+com/tabeldata/springhibernatequis/repository/ProdukTabunganDao.class
