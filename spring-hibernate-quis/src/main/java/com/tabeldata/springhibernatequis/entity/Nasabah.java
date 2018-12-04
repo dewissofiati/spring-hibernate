@@ -16,7 +16,6 @@ import java.util.List;
 public class Nasabah {
 
     @Id
-
     @Column(name = "id_nasabah", nullable = false)
     private String id;
 
@@ -38,21 +37,13 @@ public class Nasabah {
     @OneToOne
     @JoinColumn(name = "id_produk_tabungan", nullable = false)
     private ProdukTabungan produkTabungan;
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "historytransaksi",
-//            joinColumns = @JoinColumn(name = "id_nasabah", nullable = false),
-//            inverseJoinColumns = @JoinColumn(name = "kode_transaksi", nullable = false)
-//    )
+
     @OneToMany
     @JoinTable(
-            name = "historytransaksi",
+            name = "transaksi",
             joinColumns = @JoinColumn(name = "id_nasabah", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "kode_transaksi", nullable = false)
 )
     private List<BukuTabungan> listTransaksi = new ArrayList<>();
-
-    public Nasabah(String id, String nama, String alamat, String kota, String kecamatan, String noHp) {
-    }
 
 }
