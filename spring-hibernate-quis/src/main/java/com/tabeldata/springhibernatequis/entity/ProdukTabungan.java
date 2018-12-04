@@ -8,8 +8,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "produktabungan")
+@Table(name = "produk_tabungan")
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class ProdukTabungan {
 
@@ -28,7 +29,4 @@ public class ProdukTabungan {
 
     @Column(name = "setoran_awal_min")
     private BigDecimal setoranAwalMin;
-
-    public ProdukTabungan(String idProduk, String namaTabungan, double bungaPerAnum, BigDecimal biayaAdmin, BigDecimal setoranAwalMin) {
-    }
 }
